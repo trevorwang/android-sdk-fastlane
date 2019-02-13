@@ -1,13 +1,9 @@
 FROM runmymind/docker-android-sdk:latest
 
-RUN set -ex \
-	\
-	&& buildDeps=' \
-		bison \
-		dpkg-dev \
-		libgdbm-dev \
-		ruby \
-	' \
-	&& apt-get update \
-	&& apt-get install -y --no-install-recommends $buildDeps
-RUN gem install bundle
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
+RUN apt-get update
+RUN apt-get install -y build-essential ruby-full
+RUN gem install bundler
+#RUN gem install fastlane
